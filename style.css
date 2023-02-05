@@ -9,8 +9,11 @@
 }
 
 :root {
+    --base-text-color: black;
+    --text-color-100: white; /* Used on nav */
+    --blue-grey-200: #E2E8F0;
     --blue-300: #1992D4;
-    --text-color-100: white;
+    --orange-400: #FF9701;
 }
 
 *,
@@ -31,7 +34,7 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: max-content repeat(4, 1fr);
+    grid-template-columns: max-content 1fr;
     height: 100%;
 }
 
@@ -41,7 +44,12 @@ li {
 
 svg {
     fill: currentColor;
+    width: 1.4rem;
 }
+
+/*
+*  NAV SECTION
+*/
 
 .nav-section {
     background-color: var(--blue-300);
@@ -94,7 +102,7 @@ nav a {
     width: fit-content;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
     text-decoration: none;
     color: inherit;
     padding: .2rem;
@@ -118,12 +126,98 @@ nav a:focus-within::after {
     transform: scaleX(100%);
 }
 
+/*
+*  CONTENT SECTION
+*/
 
-nav svg {
-    width: 1.2rem;
+.control-section {
+    color: var(--base-text-color);
 }
 
-@media only screen and (max-width: 600px) {
+.content-header {
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    padding: 1rem 1.5rem;
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.search-section svg {
+    height: 100%;
+    width: 1.5rem;
+}
+
+.search-wrapper {
+    display: flex;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+.search-wrapper input {
+    background-color: var(--blue-grey-200);
+    padding: 0.3rem 0.5rem;
+    border: none;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-wrapper input:focus-visible {
+    outline-color: inherit;
+    outline-width: 2px;
+    outline-style: solid;
+}
+
+.control-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.control-section .img-wrapper {
+    border-radius: 50%;
+    height: 2.5rem;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.control-section .img-wrapper img {
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .control-section svg:hover {
+        animation: shake 500ms;
+        animation-iteration-count: infinite;
+        animation-delay: 300ms;
+        -webkit-animation: shake 500ms;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-delay: 300ms;
+    }
+}
+
+
+
+.control-section .name {
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 700px) {
+
+    /* Nav section */
+
+    .nav-section {
+        padding: 0.6rem;
+    }
+
     .nav-title h1 {
         display: none;
     }
@@ -150,5 +244,24 @@ nav svg {
     .nav-section nav a::after {
         content: none
     }
+
+    /* Control section */
+
+    .content-header {
+        padding: 0.6rem;
+    }
+
+    .control-section .name {
+        display: none;
+    }
+    
 }
 
+@keyframes shake {
+    0% { transform: translate(1px, 0) rotate(-2deg); }
+    20% { transform: translate(-1px, 0) rotate(2deg); }
+    40% { transform: translate(1px, 0) rotate(-2deg); }
+    60% { transform: translate(-1px, 0) rotate(2deg); }
+    80% { transform: translate(1px, 0) rotate(-2deg); }
+    100% { transform: translate(1px, 0) rotate(2deg); }
+  }
